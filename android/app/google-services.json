@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "937387137985",
+    "project_id": "travel-diaries-6f184",
+    "storage_bucket": "travel-diaries-6f184.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937387137985:android:e06a9890c1586e290aad40",
+        "android_client_info": {
+          "package_name": "com.example.travel_diary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937387137985-o38mt6duon6v5b8b6njk0bcpbe13h1j7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5JcqX_U8AQUOcVzymAX9EyzxL8QTjV6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937387137985-o38mt6duon6v5b8b6njk0bcpbe13h1j7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
