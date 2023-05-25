@@ -61,6 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (value!.isEmpty) {
                       return 'please Enter your email';
                     }
+                    return null;
                   },
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -76,6 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (value!.isEmpty) {
                       return 'please Enter your password';
                     }
+                    return null;
                   },
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
