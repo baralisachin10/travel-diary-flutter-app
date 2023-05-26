@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:travel_diary/Screens/welcome_screen.dart';
 
 import 'Screens/login_screens.dart';
+import 'Screens/register_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,11 +17,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const SplashScreen(),
+      debugShowCheckedModeBanner: false,
+      home: const RegisterScreen(),
       initialRoute: '/splash',
       routes: {
         '/splash': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
       },
     );
   }

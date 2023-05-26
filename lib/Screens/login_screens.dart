@@ -20,13 +20,18 @@ class _LoginScreenState extends State<LoginScreen> {
   Future _userLogin(BuildContext context) async {
     //firebase auth
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
-      );
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Login Successful')));
+      )
+          .then((value) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Login Successful')));
+      }).onError((error, stackTrace) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Login Failed')));
+      });
     } catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Login Failed')));
@@ -36,6 +41,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Login Now'),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -53,7 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-
                 //email field
                 TextFormField(
                   controller: _emailController,
@@ -113,6 +121,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/register');
+                  },
+                  child: const Text('create a new account'),
                 )
               ],
             ),
