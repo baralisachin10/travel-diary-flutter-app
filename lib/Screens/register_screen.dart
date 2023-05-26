@@ -19,6 +19,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+
+  // user register function
+
+  Future userRegister() async{
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
