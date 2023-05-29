@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -19,11 +21,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-
   // user register function
 
-  Future userRegister() async{
-    
+  Future userRegister() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text, password: _passwordController.text);
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .set({
+        'firstName': _firstNameController.text,
+        'lastname': _lastNameController.text,
+        'username': _userNameController.text,
+        'email': _emailController.text,
+        'password': _passwordController.text,
+      }).then((value) => {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('Register successful'),
+                ))
+              });
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Register Error')));
+    }
   }
 
   @override
@@ -158,7 +181,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               InkWell(
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
-                    print('form validate');
+                    userRegister();
                   }
                 },
                 child: Container(
