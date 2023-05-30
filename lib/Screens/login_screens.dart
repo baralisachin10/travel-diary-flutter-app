@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
         password: _passwordController.text,
       )
           .then((value) {
-        Navigator.pushNamed(context, '/dashboard');
+        Navigator.pushNamed(context, '/bottomNavbar');
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Login Successful')));
       }).onError((error, stackTrace) {
