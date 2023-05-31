@@ -15,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   //form key
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   //function for login
   Future _userLogin(BuildContext context) async {
@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
-            key: _formkey,
+            key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // login button
                 InkWell(
                   onTap: () {
-                    if (_formkey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate()) {
                       _userLogin(context);
                     }
                   },
