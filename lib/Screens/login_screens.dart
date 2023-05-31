@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_diary/API/APIServices.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,24 +20,20 @@ class _LoginScreenState extends State<LoginScreen> {
   //function for login
   Future _userLogin(BuildContext context) async {
     //firebase auth
-    try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
-      )
-          .then((value) {
-        Navigator.pushNamed(context, '/bottomNavbar');
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Login Successful')));
-      }).onError((error, stackTrace) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Login Failed')));
-      });
-    } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Login Failed')));
-    }
+    APIServices()
+        .login(_emailController.text, _passwordController.text)
+        .then((value) => {
+              if (value == true)
+                {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('login successful'))),
+                }
+              else
+                {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('login successful'))),
+                }
+            });
   }
 
   @override

@@ -22,12 +22,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        title: const Text('Travel Diary'),
-        elevation: 0,
-      ),
+     
       body: _screenList.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
