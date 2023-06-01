@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_diary/API/APIServices.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -25,22 +24,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Future userRegister() async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text, password: _passwordController.text);
-
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .set({
-        'firstName': _firstNameController.text,
-        'lastname': _lastNameController.text,
-        'username': _userNameController.text,
-        'email': _emailController.text,
-        'password': _passwordController.text,
-      }).then((value) => {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Register successful'),
-                ))
+      APIServices()
+          .register(
+              _firstNameController.text,
+              _lastNameController.text,
+              _userNameController.text,
+              _emailController.text,
+              _passwordController.text)
+          .then((value) => {
+                if (value == true)
+                  {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Register successful'),
+                    )),
+                    Navigator.pushNamed(context, '/login')
+                  }
+                else
+                  {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Register successful'),
+                    )),
+                  }
               });
     } catch (e) {
       print(e);
