@@ -34,7 +34,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         elevation: 0,
       ),
       body: FutureBuilder(
-        future: FirebaseFirestore.instance.collection('user').doc(userId).get(),
+        future:
+            FirebaseFirestore.instance.collection('users').doc(userId).get(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Column(
